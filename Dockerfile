@@ -1,5 +1,4 @@
-FROM debian
-MAINTAINER "hello@wearespindle.com"
+FROM debian:jessie
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM='xterm-256color'
@@ -8,10 +7,12 @@ ENV TERM='xterm-256color'
 RUN apt-get update && \
     apt-get install -yq curl swig bzip2 gcc g++ make unzip subversion file dos2unix perl-modules python3 python
 
-RUN echo 'deb http://deb.debian.org/debian jessie-backports main' > /etc/apt/sources.list.d/jessie-backports.list
+# RUN echo 'deb http://deb.debian.org/debian jessie-backports main' > /etc/apt/sources.list.d/jessie-backports.list
+RUN echo 'deb [check-valid-until=no] http://archive.debian.org/debian jessie-backports main' > /etc/apt/sources.list.d/jessie-backports.list
 
-RUN apt-get update -y
-RUN apt-get install \
+RUN apt-get -o Acquire::Check-Valid-Until=false update -y
+RUN apt-get install -t \
+    jessie-backports \
     openjdk-8-jdk \
     ca-certificates-java \
     --assume-yes
