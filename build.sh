@@ -6,7 +6,7 @@ SSL_ARCHS=(
     "android64-aarch64" # arm64-v8a"
     "android-x86"       # x86
     "android64"         # x86_64
-    "android-mips64"    # mips64
+    # "android-mips64"    # mips64
 
     # "android-mips"      # mips
 )
@@ -17,7 +17,7 @@ AVAILABLE_ARCHS=(
     "arm64-v8a"
     "x86"
     "x86_64"
-    "mips64"
+    # "mips64"
 
     # "mips"
 )
@@ -188,19 +188,19 @@ function configure_base_ssl_export() {
         export TOOL="x86_64-linux-android"
         NDK_FLAGS="--arch=x86_64"
         PLATFORM="android-21"
-    elif [ "$ARCH" == "android-mips" ]; then
-        export ARCH_FLAGS=""
-        export ARCH_LINK=""
-        export TOOL="mipsel-linux-android"
-        NDK_FLAGS="--arch=mips"
-        PLATFORM="android-19"
-    elif [ "$ARCH" == "android-mips64" ]; then
-        export ARCH="linux64-mips64"
-        export ARCH_FLAGS=""
-        export ARCH_LINK=""
-        export TOOL="mips64el-linux-android"
-        NDK_FLAGS="--arch=mips64"
-        PLATFORM="android-21"
+    # elif [ "$ARCH" == "android-mips" ]; then
+    #     export ARCH_FLAGS=""
+    #     export ARCH_LINK=""
+    #     export TOOL="mipsel-linux-android"
+    #     NDK_FLAGS="--arch=mips"
+    #     PLATFORM="android-19"
+    # elif [ "$ARCH" == "android-mips64" ]; then
+    #     export ARCH="linux64-mips64"
+    #     export ARCH_FLAGS=""
+    #     export ARCH_LINK=""
+    #     export TOOL="mips64el-linux-android"
+    #     NDK_FLAGS="--arch=mips64"
+    #     PLATFORM="android-21"
     fi;
 
     # python $ANDROID_NDK_ROOT/build/tools/make_standalone_toolchain.py \
