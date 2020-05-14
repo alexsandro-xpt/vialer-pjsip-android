@@ -31,7 +31,7 @@ ENV PATH "$PATH:$ANDROID_HOME/build-tools/android-26:$PATH"
 
 # RUN cpan File::Compare
 
-ENV SDK_MANAGER_URL https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip
+ENV SDK_MANAGER_URL https://dl.google.com/android/repository/commandlinetools-linux-6200805_latest.zip
 RUN curl $SDK_MANAGER_URL -o /opt/sdktools.zip
 RUN unzip /opt/sdktools.zip -d /opt
 
@@ -39,11 +39,12 @@ RUN unzip /opt/sdktools.zip -d /opt
 # RUN curl $NDK_URL -o /opt/android-ndk-r14b.zip
 # RUN unzip /opt/android-ndk-r14b.zip -d /opt
 
-ENV NDK_URL http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin
-RUN curl $NDK_URL -o /opt/ndk.bin && \
-    chmod +x /opt/ndk.bin && \
-    cd /opt && ./ndk.bin && rm /opt/ndk.bin
+ENV NDK_URL https://dl.google.com/android/repository/android-ndk-r21b-linux-x86_64.zip
+RUN curl $NDK_URL -o /opt/ndk.zip
+RUN unzip /opt/ndk.zip -d /opt
 
 ENV PATH "$PATH:$ANDROID_HOME/ndk-bundle:$PATH"
-ENV ANDROID_NDK_ROOT /opt/android-ndk-r10e
 # ENV ANDROID_NDK_ROOT="/opt/android-ndk-r14b"
+
+RUN mv /opt/android-ndk-r21b $ANDROID_HOME/ndk-bundle
+ENV ANDROID_NDK_ROOT $ANDROID_HOME/ndk-bundle
