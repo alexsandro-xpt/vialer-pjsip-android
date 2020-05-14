@@ -416,16 +416,16 @@ function install_android_sdks() {
     touch /root/.android/repositories.cfg
 
     echo "Install latest SDK:"
-    /opt/tools/bin/sdkmanager "platforms;android-26"
-    /opt/tools/bin/sdkmanager "platforms;android-25"
+    /opt/tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} "platforms;android-26"
+    /opt/tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} "platforms;android-25"
     /opt/tools/bin/sdkmanager "platform-tools"
     echo "Install latest build-tools:"
-    /opt/tools/bin/sdkmanager "build-tools;26.0.0"
-    /opt/tools/bin/sdkmanager "build-tools;25.0.2"
+    /opt/tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} "build-tools;26.0.0"
+    /opt/tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} "build-tools;25.0.2"
     echo "Install latest tools:"
     /opt/tools/bin/sdkmanager "tools"
 
-    (while sleep 3; do echo "y"; done) | /opt/tools/bin/sdkmanager --licenses
+    (while sleep 3; do echo "y"; done) | /opt/tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} --licenses
 
     # ln -s /opt/platforms/android-26/ ln -s ${ANDROID_NDK_HOME}platforms/android-26/
 
