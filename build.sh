@@ -55,7 +55,7 @@ export OPUS_SRC_DIR="$OPUS_BUILD_DIR/src"
 export OPUS_OUTPUT_DIR="$BUILD_DIR/lib/opus"
 
 export SWIG_DIR="$BUILD_DIR/swig"
-export ACTIVE_NDK_VERSION="r10e"
+export ACTIVE_NDK_VERSION="r21b"
 export ANDROID_NDK_HOME="/opt/android-ndk-${ACTIVE_NDK_VERSION}/"
 export ANDROID_NDK_TOOLCHAIN_PATH="${ANDROID_NDK_HOME}ndk-toolchains"
 
@@ -334,12 +334,12 @@ function _______build_ssl2() {
     pushd . > /dev/null
     cd $SSL_BUILD_DIR
 
-    ssl_url="https://github.com/openssl/openssl/archive/OpenSSL_1_1_0f.tar.gz"
-    echo "Downloading OpenSSL 1.1.0f"
+    ssl_url="https://github.com/openssl/openssl/archive/OpenSSL_1_1_1f.tar.gz"
+    echo "Downloading OpenSSL 1.1.1f"
     curl -LO $ssl_url
-    echo "Extracting OpenSSL 1.1.0f to $SSL_BUILD_DIR"
-    tar zxf "OpenSSL_1_1_0f.tar.gz" --strip 1
-    rm "OpenSSL_1_1_0f.tar.gz"
+    echo "Extracting OpenSSL 1.1.1f to $SSL_BUILD_DIR"
+    tar zxf "OpenSSL_1_1_1f.tar.gz" --strip 1
+    rm "OpenSSL_1_1_1f.tar.gz"
 
     openssl_sh_url="https://wiki.openssl.org/images/7/70/Setenv-android.sh"
     echo "Downloading OpenSSL Setenv-android.sh"
@@ -347,7 +347,7 @@ function _______build_ssl2() {
 
     sed -i -e 's/_ANDROID_EABI="arm-linux-androideabi-4.8"/_ANDROID_EABI="arm-linux-androideabi-4.9"/g' "$SSL_BUILD_DIR/Setenv-android.sh"
     sed -i -e 's/_ANDROID_API="android-18"/_ANDROID_API="android-21"/g' "$SSL_BUILD_DIR/Setenv-android.sh"
-    sed -i -e 's/_ANDROID_NDK="android-ndk-r9"/_ANDROID_NDK="android-ndk-r10e"/g' "$SSL_BUILD_DIR/Setenv-android.sh"
+    sed -i -e 's/_ANDROID_NDK="android-ndk-r9"/_ANDROID_NDK="android-ndk-r21b"/g' "$SSL_BUILD_DIR/Setenv-android.sh"
 
     chmod a+x Setenv-android.sh
     dos2unix Setenv-android.sh
@@ -599,7 +599,7 @@ function build_aar() {
     cd "$BASE_DIR/tmp/android-library-template"
 
     # sed -i -e 's/ndk.dir=\/Users\/redmerloen\/Library\/Android\/sdk\/ndk-bundle/ndk.dir=\/opt\/android-ndk-r14b/g' $BASE_DIR"/tmp/android-library-template/local.properties"
-    sed -i -e 's/ndk.dir=\/Users\/redmerloen\/Library\/Android\/sdk\/ndk-bundle/ndk.dir=\/opt\/android-ndk-r10e/g' $BASE_DIR"/tmp/android-library-template/local.properties"
+    sed -i -e 's/ndk.dir=\/Users\/redmerloen\/Library\/Android\/sdk\/ndk-bundle/ndk.dir=\/opt\/android-ndk-r21b/g' $BASE_DIR"/tmp/android-library-template/local.properties"
     sed -i -e 's/sdk.dir=\/Users\/redmerloen\/Library\/Android\/sdk/sdk.dir=\/opt/g' $BASE_DIR"/tmp/android-library-template/local.properties"
 
     ./gradlew assembleRelease

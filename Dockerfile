@@ -44,7 +44,5 @@ RUN curl $NDK_URL -o /opt/ndk.zip
 RUN unzip /opt/ndk.zip -d /opt
 
 ENV PATH "$PATH:$ANDROID_HOME/ndk-bundle:$PATH"
+ENV ANDROID_NDK_ROOT $ANDROID_HOME/android-ndk-r21b
 # ENV ANDROID_NDK_ROOT="/opt/android-ndk-r14b"
-
-RUN mv /opt/android-ndk-r21b $ANDROID_HOME/ndk-bundle
-ENV ANDROID_NDK_ROOT $ANDROID_HOME/ndk-bundle
