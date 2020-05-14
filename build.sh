@@ -517,15 +517,15 @@ function configure_arm64-v8a() {
     export EXTRA_FLAGS="--use-ndk-cflags"
 }
 
-function configure_mips() {
-    echo "Configure for mips"
-    export EXTRA_FLAGS="--use-ndk-cflags"
-}
+# function configure_mips() {
+#     echo "Configure for mips"
+#     export EXTRA_FLAGS="--use-ndk-cflags"
+# }
 
-function configure_mips64() {
-    echo "Configure for mips64"
-    export EXTRA_FLAGS="--use-ndk-cflags"
-}
+# function configure_mips64() {
+#     echo "Configure for mips64"
+#     export EXTRA_FLAGS="--use-ndk-cflags"
+# }
 
 function _build() {
     arch=$1
