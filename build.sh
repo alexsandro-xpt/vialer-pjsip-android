@@ -32,7 +32,7 @@ export USE_SSL_ARCHS=()
 export BASE_DIR=`pwd -P`
 
 export PJSIP_VERSION="latest"
-export PJSIP_BASE_URL="http://svn.pjsip.org/repos/pjproject"
+export PJSIP_BASE_URL="https://github.com/pjsip/pjproject.git"
 export PJSIP_DIR="$BASE_DIR/pjsip"
 export PJSIP_FINAL_LIB_DIR="$BASE_DIR/lib"
 export PJSIP_FINAL_JAVA_DIR="$BASE_DIR/java"
@@ -366,17 +366,19 @@ function _______build_ssl2() {
 
 function download_pjsip () {
     if [ $PJSIP_VERSION = "latest" ]; then
-        latest_pjsip_tag=$(svn ls "$PJSIP_BASE_URL/tags/" | tail -n 1  | cut -d "/" -f 1 | sort -t . -k 1,2n -k 2,2n -k 3,2)
+        latest_pjsip_tag=$(git ls-remote --tags ${PJSIP_BASE_URL} | sort -t '/' -k 3 -V | awk -F/ '{ print $3 }' | awk '!/\^\{\}/' | tail -n 1)
         PJSIP_VERSION=$latest_pjsip_tag
     fi
 
-    checkout_url="${PJSIP_BASE_URL}/tags/${PJSIP_VERSION}"
+    # checkout_url="${PJSIP_BASE_URL}/tags/${PJSIP_VERSION}"
     # checkout_url="${PJSIP_BASE_URL}/trunk"
 
     echo "Download PJSIP version: ${PJSIP_VERSION}"
-    echo "Checkout url: $checkout_url"
+    echo "Cloning url: ${PJSIP_BASE_URL} with TAG ${latest_pjsip_tag}"
     mkdir -p $PJSIP_DIR
-    svn export $checkout_url $PJSIP_SRC_DIR -q
+    git clone --branch $PJSIP_VERSION $PJSIP_BASE_URL
+    echo "Moving pjproject to ${PJSIP_SRC_DIR}"
+    mv pjproject $PJSIP_SRC_DIR
     echo "Done downloading PJSIP source"
     echo "============================="
 }
