@@ -5,7 +5,7 @@ ENV TERM='xterm-256color'
 
 # Install necessary packages
 RUN apt-get update && \
-    apt-get install -yq curl swig bzip2 gcc g++ make unzip subversion file dos2unix perl-modules python3 python
+    apt-get install -yq curl swig bzip2 gcc g++ make unzip git subversion file dos2unix perl-modules python3 python
 
 # RUN echo 'deb http://deb.debian.org/debian jessie-backports main' > /etc/apt/sources.list.d/jessie-backports.list
 RUN echo 'deb [check-valid-until=no] http://archive.debian.org/debian jessie-backports main' > /etc/apt/sources.list.d/jessie-backports.list
