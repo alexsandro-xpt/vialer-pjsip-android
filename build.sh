@@ -450,6 +450,8 @@ function config_site () {
     echo "#define PJMEDIA_SDP_NEG_ANSWER_SYMMETRIC_PT 0" >> $PJSIP_CONFIG_SITE_H
     echo "#define PJMEDIA_HAS_OPUS_CODEC 1" >> $PJSIP_CONFIG_SITE_H
     echo "#define PJMEDIA_AUDIO_DEV_HAS_OPENSL 1" >> $PJSIP_CONFIG_SITE_H
+    echo "#define PJMEDIA_HAS_WEBRTC_AEC 1" >> $PJSIP_CONFIG_SITE_H
+    echo "#define PJ_HAS_IPV6 1" >> $PJSIP_CONFIG_SITE_H
 
     while IFS=',' read -ra CONFIG_SITE_OPTION; do
         for i in "${CONFIG_SITE_OPTION[@]}"; do
