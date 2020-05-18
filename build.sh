@@ -452,6 +452,8 @@ function config_site () {
     echo "#define PJMEDIA_AUDIO_DEV_HAS_OPENSL 1" >> $PJSIP_CONFIG_SITE_H
     echo "#define PJMEDIA_HAS_WEBRTC_AEC 1" >> $PJSIP_CONFIG_SITE_H
     echo "#define PJ_HAS_IPV6 1" >> $PJSIP_CONFIG_SITE_H
+    echo "#define PJSIP_HAS_DIGEST_AKA_AUTH 1" >> $PJSIP_CONFIG_SITE_H
+    echo "#define PJSIP_HAS_TLS_TRANSPORT 1" >> $PJSIP_CONFIG_SITE_H
 
     while IFS=',' read -ra CONFIG_SITE_OPTION; do
         for i in "${CONFIG_SITE_OPTION[@]}"; do
